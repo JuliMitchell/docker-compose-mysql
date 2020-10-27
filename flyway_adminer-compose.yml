@@ -1,0 +1,15 @@
+version: '3'
+services:
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:mysql://master -schemas=myschema -user=root -password=P@ssw0rd-master -connectRetries=60 migrate
+    volumes:
+      - ./flyway/master:/flyway/sql
+
+  adminer:
+    image: adminer
+    volumes:
+      - ./adminer/adminer.css:/var/www/html/adminer.css
+    restart: always
+    ports:
+      - 8080:8080

@@ -1,0 +1,31 @@
+version: '3'
+services:
+  master:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd-master
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
+    volumes:
+      - my-datavolume-master:/var/lib/mysql
+      - ./mysql/conf/master:/etc/mysql/conf.d:rw
+    container_name: mysql-master
+
+  slave:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd-slave
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3307:3306
+    volumes:
+      - my-datavolume-slave:/var/lib/mysql
+      - ./mysql/conf/slave:/etc/mysql/conf.d:rw
+    depends_on:
+      - master
+    container_name: mysql-slave
+
+volumes:
+  my-datavolume-master:
+  my-datavolume-slave:
