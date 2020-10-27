@@ -7,3 +7,7 @@ Configuración inicial de MySQL utilizando las siguientes herramientas:
  - Adminer: https://www.adminer.org/
  
  Se han configurado dos intancias MySQL para generar una replicación master-slave.
+ 
+ Para la instalación:
+  - Se debe contar con Docker(https://docs.docker.com/get-docker/) instalado.
+  - Se debe ejecutar el archivo 'start.sh'
